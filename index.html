@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARKLUX - Premium Construction Materials Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #0a1612;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 고급스러운 배경 그라데이션 애니메이션 */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(0, 255, 204, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(0, 204, 153, 0.06) 0%, transparent 50%);
+            animation: gradientShift 15s ease infinite;
+            z-index: 0;
+        }
+
+        /* 움직이는 파티클 효과 */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(0, 255, 204, 0.3);
+            border-radius: 50%;
+            animation: float 20s infinite;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 15s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 2s; animation-duration: 18s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 4s; animation-duration: 20s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 1s; animation-duration: 16s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 3s; animation-duration: 19s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 5s; animation-duration: 17s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 2.5s; animation-duration: 21s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 4.5s; animation-duration: 15s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: 1.5s; animation-duration: 18s; }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        /* 메인 컨테이너 */
+        .container {
+            text-align: center;
+            padding: 40px 30px;
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1.2s ease-out;
+            overflow-y: auto;
+            max-height: 100vh;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 헤더 */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            animation: slideDown 1s ease-out 0.3s both;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-container {
+            position: relative;
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: 900;
+            letter-spacing: 14px;
+            color: #ffffff;
+            font-family: 'Noto Sans KR', sans-serif;
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00ffcc, #00cc99);
+            animation: expandLine 1.5s ease-out 0.8s forwards;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+        }
+
+        @keyframes expandLine {
+            to {
+                width: 70px;
+            }
+        }
+
+        .subtitle {
+            display: inline-block;
+            padding: 10px 24px;
+            border: 2px solid #00ffcc;
+            border-radius: 6px;
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: #00ffcc;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-family: 'Noto Sans KR', sans-serif;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .subtitle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 255, 204, 0.1);
+            transition: left 0.5s ease;
+        }
+
+        .subtitle:hover::before {
+            left: 100%;
+        }
+
+        /* 설명 - 한국어 */
+        .description {
+            font-size: 16px;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 40px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.5s both;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: 400;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .description .brand {
+            color: #00ffcc;
+            font-weight: 700;
+        }
+
+        /* 언어 섹션 */
+        .language-block {
+            margin-bottom: 35px;
+            animation: fadeInUp 1s ease-out 0.7s both;
+        }
+
+        .language-label {
+            font-size: 13px;
+            color: #00ffcc;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+
+        .language-text {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.8;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: 400;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .language-text .brand {
+            color: #00ffcc;
+            font-weight: 700;
+        }
+
+        /* 고급스러운 구분선 */
+        .divider {
+            width: 100%;
+            max-width: 500px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 204, 0.4), transparent);
+            margin: 40px auto;
+            position: relative;
+            animation: expandWidth 2s ease-out 1s both;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: #00ffcc;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.6);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes expandWidth {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+                max-width: 500px;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0.7;
+            }
+        }
+
+        /* 날짜 섹션 */
+        .date-section {
+            margin: 45px 0 50px 0;
+            animation: fadeInUp 1s ease-out 0.9s both;
+        }
+
+        .date {
+            font-size: 70px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00ffcc 0%, #00cc99 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            letter-spacing: 6px;
+            font-family: 'Noto Sans KR', sans-serif;
+            text-shadow: 0 0 40px rgba(0, 255, 204, 0.3);
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                filter: drop-shadow(0 0 20px rgba(0, 255, 204, 0.4));
+            }
+            50% {
+                filter: drop-shadow(0 0 40px rgba(0, 255, 204, 0.6));
+            }
+        }
+
+        .coming-soon {
+            font-size: 16px;
+            letter-spacing: 8px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            font-weight: 300;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        /* 푸터 */
+        .footer {
+            margin-top: 50px;
+            padding-bottom: 30px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.35);
+            letter-spacing: 2px;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: 400;
+            animation: fadeInUp 1s ease-out 1.1s both;
+        }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                margin-bottom: 40px;
+            }
+
+            .logo {
+                font-size: 36px;
+                letter-spacing: 10px;
+            }
+
+            .subtitle {
+                font-size: 8px;
+                padding: 8px 20px;
+            }
+
+            .description {
+                font-size: 14px;
+            }
+
+            .language-text {
+                font-size: 12px;
+            }
+
+            .date {
+                font-size: 50px;
+            }
+
+            .coming-soon {
+                font-size: 12px;
+                letter-spacing: 6px;
+            }
+        }
+
+        @media (max-height: 800px) {
+            .header {
+                margin-bottom: 35px;
+            }
+
+            .description {
+                font-size: 15px;
+                margin-bottom: 30px;
+            }
+
+            .language-block {
+                margin-bottom: 25px;
+            }
+
+            .language-text {
+                font-size: 13px;
+            }
+
+            .divider {
+                margin: 30px auto;
+            }
+
+            .date {
+                font-size: 60px;
+            }
+
+            .footer {
+                margin-top: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 파티클 효과 -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo-container">
+                <div class="logo">ARKLUX</div>
+            </div>
+            <div class="subtitle">UPGRADE MAINTENANCE</div>
+        </div>
+
+        <div class="description">
+            에너지 절감 및 스마트 인프라 구축 한국 건축자재 <span class="brand">K-ArkLux</span>를 찾아주셔서 감사합니다.<br>
+            추가 제품과 브랜드 및 보다 나은 모습을 위해 현재 업그레이드 중입니다. 보다 확장성 있는 서비스를 위해 시스템 재정비를 진행하고 있습니다.<br>
+            빠르게 다시 찾아뵙겠습니다.
+        </div>
+
+        <div class="language-block">
+            <div class="language-label">EN</div>
+            <div class="language-text">
+                Thank you for visiting <span class="brand">K-ArkLux</span>, Korean construction materials for energy saving and smart infrastructure.<br>
+                We are currently upgrading for additional products, brands, and a better experience. We are reorganizing our system for more scalable services.<br>
+                We will be back soon.
+            </div>
+        </div>
+
+        <div class="language-block">
+            <div class="language-label">MN</div>
+            <div class="language-text">
+                Эрчим хүчний хэмнэлт болон ухаалаг дэд бүтцэд зориулсан солонгос барилгын материал <span class="brand">K-ArkLux</span>-д зочилсонд баярлалаа.<br>
+                Бид нэмэлт бүтээгдэхүүн, брэнд болон илүү сайн туршлагын төлөө шинэчлэлт хийж байна. Илүү өргөжүүлэх боломжтой үйлчилгээний төлөө системийг дахин зохион байгуулж байна.<br>
+                Бид удахгүй эргэн ирнэ.
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="date-section">
+            <div class="date">2026.03</div>
+            <div class="coming-soon">COMING SOON</div>
+        </div>
+
+        <div class="footer">
+            © ARKLUX. ALL RIGHTS RESERVED.
+        </div>
+    </div>
+</body>
+</html>
